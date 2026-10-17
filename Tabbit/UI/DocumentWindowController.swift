@@ -22,6 +22,7 @@ final class DocumentWindowController: NSWindowController, NSToolbarDelegate, NSM
         window.tabbingMode = .preferred
         window.tabbingIdentifier = "io.github.byronf-sama.tabbit.document"
         window.contentViewController = content
+        window.initialFirstResponder = content.focusView
         window.setContentSize(NSSize(width: 980, height: 760))
         window.minSize = NSSize(width: 420, height: 300)
         window.center()

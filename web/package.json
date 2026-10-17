@@ -1,0 +1,22 @@
+{
+  "name": "tabbit-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Web code for Tabbit's viewer and editor, bundled into Tabbit/Resources/web",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "github-markdown-css": "5.9.0",
+    "github-slugger": "2.0.0",
+    "highlight.js": "11.12.0",
+    "markdown-it": "15.0.3",
+    "markdown-it-anchor": "10.0.0",
+    "markdown-it-footnote": "4.0.0",
+    "markdown-it-github-alerts": "1.0.1",
+    "markdown-it-task-lists": "2.1.1"
+  }
+}

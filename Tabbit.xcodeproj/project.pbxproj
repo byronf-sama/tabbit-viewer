@@ -10,7 +10,10 @@
 		0C41887D7B3BFEF03D23C9AC /* TabbitDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A100DDBF8ACEF4EFF0BD386 /* TabbitDocument.swift */; };
 		1CAA86B2B07B2B39ACCBA586 /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C744B1D622C57415FDE0B7 /* DocumentWindowController.swift */; };
 		325D44213F48F98A4A48DA2A /* TabbitDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD1A10656911A2EDBF3E982 /* TabbitDocumentController.swift */; };
+		3C4609C19CA68680AE0DF58F /* LocalFileSchemeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DF8AB1F96D1ED2F3766F92 /* LocalFileSchemeHandler.swift */; };
 		4BAE08BA51AC35A32C6F16DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B042A46CC64F3B6E9C91E /* AppDelegate.swift */; };
+		7C43834D1EEE5647499387FA /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC3EEA2133C3EA6E832EFA4 /* PreviewController.swift */; };
+		7F190513A93C831044BDABCA /* web in Resources */ = {isa = PBXBuildFile; fileRef = 4C5164EF5C7162F899708DCF /* web */; };
 		978B88EA5BC40070CF923DB7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C78B9D24C6789810B2D59F /* main.swift */; };
 		C04B0F161AAB3FA29F221F86 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B869DC7426065353BB4BD42 /* MainMenu.swift */; };
 		D4FD822D6EA8D5E7B1F7EF5E /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72869C21B8E4CC6B2078E13A /* DocumentViewController.swift */; };
@@ -19,7 +22,10 @@
 /* Begin PBXFileReference section */
 		34C78B9D24C6789810B2D59F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		4511C2675F3789B268BD0CB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4C5164EF5C7162F899708DCF /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; name = web; path = Tabbit/Resources/web; sourceTree = SOURCE_ROOT; };
 		5B869DC7426065353BB4BD42 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		68DF8AB1F96D1ED2F3766F92 /* LocalFileSchemeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileSchemeHandler.swift; sourceTree = "<group>"; };
+		6AC3EEA2133C3EA6E832EFA4 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		72869C21B8E4CC6B2078E13A /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		892B042A46CC64F3B6E9C91E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A100DDBF8ACEF4EFF0BD386 /* TabbitDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbitDocument.swift; sourceTree = "<group>"; };
@@ -34,8 +40,18 @@
 			children = (
 				72869C21B8E4CC6B2078E13A /* DocumentViewController.swift */,
 				D9C744B1D622C57415FDE0B7 /* DocumentWindowController.swift */,
+				68DF8AB1F96D1ED2F3766F92 /* LocalFileSchemeHandler.swift */,
+				6AC3EEA2133C3EA6E832EFA4 /* PreviewController.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		2478C515371506001F2D7B05 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4C5164EF5C7162F899708DCF /* web */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		7A5BD5E1AF3BF62ED22CB9D9 /* Products */ = {
@@ -71,6 +87,7 @@
 				4511C2675F3789B268BD0CB6 /* Info.plist */,
 				83F9914BC6A11FE2DCDABFCF /* App */,
 				B6291D0171176A13B0B9AE29 /* Document */,
+				2478C515371506001F2D7B05 /* Resources */,
 				08E4534EE582A65D7EB6DD54 /* UI */,
 			);
 			path = Tabbit;
@@ -92,6 +109,7 @@
 			buildConfigurationList = F2F3C066989259453E64D546 /* Build configuration list for PBXNativeTarget "Tabbit" */;
 			buildPhases = (
 				9AFD826029E5D3A24541FC9E /* Sources */,
+				8E7D21309DA83C45406E5BF1 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -138,6 +156,17 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		8E7D21309DA83C45406E5BF1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F190513A93C831044BDABCA /* web in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9AFD826029E5D3A24541FC9E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -146,7 +175,9 @@
 				4BAE08BA51AC35A32C6F16DE /* AppDelegate.swift in Sources */,
 				D4FD822D6EA8D5E7B1F7EF5E /* DocumentViewController.swift in Sources */,
 				1CAA86B2B07B2B39ACCBA586 /* DocumentWindowController.swift in Sources */,
+				3C4609C19CA68680AE0DF58F /* LocalFileSchemeHandler.swift in Sources */,
 				C04B0F161AAB3FA29F221F86 /* MainMenu.swift in Sources */,
+				7C43834D1EEE5647499387FA /* PreviewController.swift in Sources */,
 				0C41887D7B3BFEF03D23C9AC /* TabbitDocument.swift in Sources */,
 				325D44213F48F98A4A48DA2A /* TabbitDocumentController.swift in Sources */,
 				978B88EA5BC40070CF923DB7 /* main.swift in Sources */,

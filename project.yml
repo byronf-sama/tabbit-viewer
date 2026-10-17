@@ -19,6 +19,12 @@ targets:
     platform: macOS
     sources:
       - path: Tabbit
+        excludes:
+          - Resources/web
+      # Built web bundle (npm run build in web/), copied into the app as a folder: Contents/Resources/web
+      - path: Tabbit/Resources/web
+        type: folder
+        buildPhase: resources
     settings:
       base:
         PRODUCT_NAME: Tabbit
