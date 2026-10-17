@@ -2,6 +2,16 @@ import AppKit
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillFinishLaunching(_ notification: Notification) {
+        // The editor is a web view: keep WebKit's text substitutions (which follow the system
+        // "smart quotes and dashes" setting) and autocorrect out of source code.
+        UserDefaults.standard.register(defaults: [
+            "WebAutomaticQuoteSubstitutionEnabled": false,
+            "WebAutomaticDashSubstitutionEnabled": false,
+            "WebAutomaticTextReplacementEnabled": false,
+            "WebAutomaticSpellingCorrectionEnabled": false,
+            "WebContinuousSpellCheckingEnabled": false,
+            "WebAutomaticLinkDetectionEnabled": false,
+        ])
         NSApp.mainMenu = MainMenu.make()
     }
 

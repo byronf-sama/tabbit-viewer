@@ -1,8 +1,9 @@
 // Bundles the web code into ../Tabbit/Resources/web (committed, so the app builds without Node).
 //
-//   markdown.html  Self-contained Markdown viewer page (JS and CSS inlined). Swift loads it with
-//                  loadHTMLString(_, baseURL: <the .md file>), so relative links and images
-//                  resolve against the file's folder.
+//   markdown.html  Self-contained Markdown viewer page (JS and CSS inlined). Swift serves it at
+//                  the .md file's own path over the tabbit-file: scheme, so relative links and
+//                  images resolve against the file's folder.
+//   editor.html    Self-contained source editor page (CodeMirror 6 + markdownlint + HTMLHint).
 //
 // Usage: npm run build
 import * as esbuild from "esbuild";
@@ -58,6 +59,19 @@ async function buildMarkdownViewer() {
   return html.length;
 }
 
+async function buildEditor() {
+  const css = await minifyCSS(await read("src/editor/page.css"));
+  const js = await bundleJS("src/editor/main.js");
+
+  let html = await read("src/editor/template.html");
+  html = inline(html, "/* @inline-css */", css, "style");
+  html = inline(html, "/* @inline-js */", js, "script");
+  await writeFile(path.join(outDir, "editor.html"), html);
+  return html.length;
+}
+
 await mkdir(outDir, { recursive: true });
-const markdownSize = await buildMarkdownViewer();
-console.log(`markdown.html  ${(markdownSize / 1024).toFixed(0)} KB`);
+for (const [name, build] of [["markdown.html", buildMarkdownViewer], ["editor.html", buildEditor]]) {
+  const size = await build();
+  console.log(`${name.padEnd(14)} ${(size / 1024).toFixed(0)} KB`);
+}

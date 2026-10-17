@@ -74,6 +74,30 @@ final class DocumentWindowController: NSWindowController, NSToolbarDelegate, NSM
         content.documentTextDidLoad()
     }
 
+    /// Native tabs don't mark unsaved documents (only the window's close button does, and only
+    /// for the selected tab), so put a dot in the tab itself.
+    override func setDocumentEdited(_ dirtyFlag: Bool) {
+        super.setDocumentEdited(dirtyFlag)
+        window?.tab.accessoryView = dirtyFlag ? Self.makeEditedDot() : nil
+    }
+
+    private static func makeEditedDot() -> NSView {
+        let symbol = NSImage(systemSymbolName: "circle.fill", accessibilityDescription: "Edited")?
+            .withSymbolConfiguration(.init(pointSize: 7, weight: .regular))
+        let dot = NSImageView(image: symbol ?? NSImage())
+        dot.contentTintColor = .secondaryLabelColor
+        dot.toolTip = "Unsaved changes"
+        return dot
+    }
+
+    func syncTextFromEditor(_ completion: @escaping () -> Void) {
+        content.syncTextFromEditor(completion)
+    }
+
+    func documentDidSave(_ text: String) {
+        content.documentDidSave(text)
+    }
+
     // MARK: Mode switching
 
     @objc private func modeControlChanged(_ sender: NSSegmentedControl) {

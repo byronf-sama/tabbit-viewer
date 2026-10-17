@@ -9,10 +9,19 @@ final class TabbitDocument: NSDocument {
         case html
     }
 
-    /// The document's text as of the last load (or the last sync from the editor).
+    /// The current text: as loaded, or as last synced from the editor (possibly unsaved).
     private(set) var text = ""
+    /// The text as of the last read or write, i.e. what is on disk.
+    private(set) var savedText = ""
     private var encoding: String.Encoding = .utf8
     private var hasUTF8BOM = false
+
+    override init() {
+        super.init()
+        // The editor keeps its own undo history; WebKit's native undo steps must not
+        // feed NSDocument's change count.
+        hasUndoManager = false
+    }
 
     /// Classic document behavior: an edited dot on unsaved tabs and a prompt when closing them.
     override class var autosavesInPlace: Bool { false }
@@ -36,6 +45,10 @@ final class TabbitDocument: NSDocument {
         super.showWindows()
     }
 
+    func updateText(_ newText: String) {
+        text = newText
+    }
+
     // MARK: Reading and writing
 
     override func read(from data: Data, ofType typeName: String) throws {
@@ -43,8 +56,35 @@ final class TabbitDocument: NSDocument {
         hasUTF8BOM = data.starts(with: [0xEF, 0xBB, 0xBF])
         if hasUTF8BOM { data = data.dropFirst(3) }
         (text, encoding) = Self.decode(data)
+        savedText = text
         // Non-empty only on File > Revert; a fresh document has no windows yet.
         documentWindowControllers.forEach { $0.documentTextDidLoad() }
+    }
+
+    /// Every save (Save, Save As, saving when closing or quitting) goes through here:
+    /// pull the latest text out of the editor first, then write it.
+    override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType,
+                       completionHandler: @escaping (Error?) -> Void) {
+        syncTextFromEditor {
+            self.saveSyncedText(to: url, ofType: typeName, for: saveOperation, completionHandler: completionHandler)
+        }
+    }
+
+    private func saveSyncedText(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType,
+                                completionHandler: @escaping (Error?) -> Void) {
+        let written = text
+        super.save(to: url, ofType: typeName, for: saveOperation) { [self] error in
+            if error == nil, saveOperation == .saveOperation || saveOperation == .saveAsOperation {
+                savedText = written
+                documentWindowControllers.forEach { $0.documentDidSave(written) }
+            }
+            completionHandler(error)
+        }
+    }
+
+    private func syncTextFromEditor(_ completion: @escaping () -> Void) {
+        guard let controller = documentWindowControllers.first else { return completion() }
+        controller.syncTextFromEditor(completion)
     }
 
     override func data(ofType typeName: String) throws -> Data {

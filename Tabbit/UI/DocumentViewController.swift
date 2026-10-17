@@ -5,15 +5,15 @@ enum DocumentMode {
     case edit
 }
 
-/// Content of a document tab: the rendered view, and the source editor.
+/// Content of a document tab: the rendered view and the source editor, one visible at a time.
 final class DocumentViewController: NSViewController {
     let document: TabbitDocument
     private(set) var mode: DocumentMode = .view
     var modeDidChange: ((DocumentMode) -> Void)?
 
     private lazy var preview = PreviewController(document: document)
-    /// Placeholder for the source editor until Milestone 4.
-    private var editorView: NSScrollView?
+    /// Created the first time the tab switches to Edit.
+    private var editor: EditorController?
 
     init(document: TabbitDocument) {
         self.document = document
@@ -37,45 +37,63 @@ final class DocumentViewController: NSViewController {
 
     /// The view that should get keyboard focus for the current mode.
     var focusView: NSView {
-        mode == .edit ? (editorView?.documentView ?? view) : preview.webView
+        mode == .edit ? (editor?.webView ?? view) : preview.webView
     }
 
     func setMode(_ newMode: DocumentMode) {
         guard newMode != mode else { return }
         mode = newMode
-        switch mode {
-        case .view:
-            editorView?.isHidden = true
-            preview.webView.isHidden = false
-        case .edit:
-            let editor = editorView ?? makeEditorPlaceholder()
-            editor.isHidden = false
-            preview.webView.isHidden = true
-        }
-        view.window?.makeFirstResponder(focusView)
         modeDidChange?(mode)
+        switch mode {
+        case .edit:
+            let editor = editor ?? makeEditor()
+            editor.webView.isHidden = false
+            preview.webView.isHidden = true
+            editor.focus()
+        case .view:
+            // Show the current edits, saved or not.
+            syncTextFromEditor { [self] in
+                preview.show(document.text, isSaved: document.text == document.savedText)
+                guard mode == .view else { return }
+                editor?.webView.isHidden = true
+                preview.webView.isHidden = false
+                view.window?.makeFirstResponder(preview.webView)
+            }
+        }
     }
 
+    /// Copies the editor's text (if there is an editor) into the document.
+    func syncTextFromEditor(_ completion: @escaping () -> Void) {
+        guard let editor else { return completion() }
+        editor.fetchText { [self] text in
+            if let text { document.updateText(text) }
+            completion()
+        }
+    }
+
+    func documentDidSave(_ text: String) {
+        editor?.markSaved(text)
+    }
+
+    /// The document was (re)read from disk, e.g. File > Revert to Saved.
     func documentTextDidLoad() {
-        (editorView?.documentView as? NSTextView)?.string = document.text
+        editor?.load(document.text)
         preview.show(document.text, isSaved: true)
+    }
+
+    private func makeEditor() -> EditorController {
+        let editor = EditorController(document: document)
+        editor.dirtyDidChange = { [weak self] dirty in
+            self?.document.updateChangeCount(dirty ? .changeDone : .changeCleared)
+        }
+        embed(editor.webView)
+        self.editor = editor
+        return editor
     }
 
     private func embed(_ subview: NSView) {
         subview.frame = view.bounds
         subview.autoresizingMask = [.width, .height]
         view.addSubview(subview)
-    }
-
-    private func makeEditorPlaceholder() -> NSScrollView {
-        let scrollView = NSTextView.scrollableTextView()
-        let textView = scrollView.documentView as! NSTextView
-        textView.isEditable = false
-        textView.font = .monospacedSystemFont(ofSize: 12, weight: .regular)
-        textView.textContainerInset = NSSize(width: 12, height: 12)
-        textView.string = document.text
-        embed(scrollView)
-        editorView = scrollView
-        return scrollView
     }
 }

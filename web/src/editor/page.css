@@ -1,0 +1,25 @@
+:root {
+  color-scheme: light dark;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: #ffffff;
+  /* For lint tooltips and the search panel; the editor itself is monospaced. */
+  font: 12px -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Matches the One Dark editor background. */
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background-color: #282c34;
+  }
+}
+
+#editor {
+  height: 100%;
+}

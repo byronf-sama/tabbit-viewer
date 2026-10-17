@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C41887D7B3BFEF03D23C9AC /* TabbitDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A100DDBF8ACEF4EFF0BD386 /* TabbitDocument.swift */; };
 		1CAA86B2B07B2B39ACCBA586 /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C744B1D622C57415FDE0B7 /* DocumentWindowController.swift */; };
+		1ECAEB7A9667839083D4AC8E /* TabbitWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAA7DB716B38CDEA7079FBE /* TabbitWebView.swift */; };
 		325D44213F48F98A4A48DA2A /* TabbitDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD1A10656911A2EDBF3E982 /* TabbitDocumentController.swift */; };
 		3C4609C19CA68680AE0DF58F /* LocalFileSchemeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DF8AB1F96D1ED2F3766F92 /* LocalFileSchemeHandler.swift */; };
 		4BAE08BA51AC35A32C6F16DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B042A46CC64F3B6E9C91E /* AppDelegate.swift */; };
@@ -18,6 +19,7 @@
 		919CCED114F87445CCF6622A /* LinkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1BBE0E349719CAA5A1CC4E /* LinkRouter.swift */; };
 		978B88EA5BC40070CF923DB7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C78B9D24C6789810B2D59F /* main.swift */; };
 		C04B0F161AAB3FA29F221F86 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B869DC7426065353BB4BD42 /* MainMenu.swift */; };
+		C725ABDD8E927ECAAF19B3CA /* EditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7841A9F5FB7D776443E4DC4B /* EditorController.swift */; };
 		D4FD822D6EA8D5E7B1F7EF5E /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72869C21B8E4CC6B2078E13A /* DocumentViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,8 @@
 		68DF8AB1F96D1ED2F3766F92 /* LocalFileSchemeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileSchemeHandler.swift; sourceTree = "<group>"; };
 		6AC3EEA2133C3EA6E832EFA4 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		72869C21B8E4CC6B2078E13A /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
+		7841A9F5FB7D776443E4DC4B /* EditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorController.swift; sourceTree = "<group>"; };
+		7AAA7DB716B38CDEA7079FBE /* TabbitWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbitWebView.swift; sourceTree = "<group>"; };
 		892B042A46CC64F3B6E9C91E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A100DDBF8ACEF4EFF0BD386 /* TabbitDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbitDocument.swift; sourceTree = "<group>"; };
 		8BEDCF1B47BC3188B0457FDA /* Tabbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tabbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,10 +49,12 @@
 			children = (
 				72869C21B8E4CC6B2078E13A /* DocumentViewController.swift */,
 				D9C744B1D622C57415FDE0B7 /* DocumentWindowController.swift */,
+				7841A9F5FB7D776443E4DC4B /* EditorController.swift */,
 				CF1BBE0E349719CAA5A1CC4E /* LinkRouter.swift */,
 				68DF8AB1F96D1ED2F3766F92 /* LocalFileSchemeHandler.swift */,
 				95083A10868E5AFD7D22ED80 /* PageUIDelegate.swift */,
 				6AC3EEA2133C3EA6E832EFA4 /* PreviewController.swift */,
+				7AAA7DB716B38CDEA7079FBE /* TabbitWebView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -183,6 +189,7 @@
 				4BAE08BA51AC35A32C6F16DE /* AppDelegate.swift in Sources */,
 				D4FD822D6EA8D5E7B1F7EF5E /* DocumentViewController.swift in Sources */,
 				1CAA86B2B07B2B39ACCBA586 /* DocumentWindowController.swift in Sources */,
+				C725ABDD8E927ECAAF19B3CA /* EditorController.swift in Sources */,
 				919CCED114F87445CCF6622A /* LinkRouter.swift in Sources */,
 				3C4609C19CA68680AE0DF58F /* LocalFileSchemeHandler.swift in Sources */,
 				C04B0F161AAB3FA29F221F86 /* MainMenu.swift in Sources */,
@@ -190,6 +197,7 @@
 				7C43834D1EEE5647499387FA /* PreviewController.swift in Sources */,
 				0C41887D7B3BFEF03D23C9AC /* TabbitDocument.swift in Sources */,
 				325D44213F48F98A4A48DA2A /* TabbitDocumentController.swift in Sources */,
+				1ECAEB7A9667839083D4AC8E /* TabbitWebView.swift in Sources */,
 				978B88EA5BC40070CF923DB7 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

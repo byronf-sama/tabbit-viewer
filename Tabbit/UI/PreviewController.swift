@@ -43,7 +43,7 @@ final class PreviewController: NSObject, WKNavigationDelegate {
         self.document = document
         let configuration = WKWebViewConfiguration()
         configuration.setURLSchemeHandler(schemeHandler, forURLScheme: LocalFileSchemeHandler.scheme)
-        webView = WKWebView(frame: .zero, configuration: configuration)
+        webView = TabbitWebView(frame: .zero, configuration: configuration)
         super.init()
         webView.navigationDelegate = self
         webView.uiDelegate = uiDelegate
