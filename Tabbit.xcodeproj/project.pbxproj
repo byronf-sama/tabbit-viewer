@@ -26,6 +26,7 @@
 		4511C2675F3789B268BD0CB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4C5164EF5C7162F899708DCF /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; name = web; path = Tabbit/Resources/web; sourceTree = SOURCE_ROOT; };
 		5B869DC7426065353BB4BD42 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		5F4C073E0D1A1CC90E6A5D25 /* Signing.requirements */ = {isa = PBXFileReference; path = Signing.requirements; sourceTree = "<group>"; };
 		68DF8AB1F96D1ED2F3766F92 /* LocalFileSchemeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileSchemeHandler.swift; sourceTree = "<group>"; };
 		6AC3EEA2133C3EA6E832EFA4 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		72869C21B8E4CC6B2078E13A /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				4511C2675F3789B268BD0CB6 /* Info.plist */,
+				5F4C073E0D1A1CC90E6A5D25 /* Signing.requirements */,
 				83F9914BC6A11FE2DCDABFCF /* App */,
 				B6291D0171176A13B0B9AE29 /* Document */,
 				2478C515371506001F2D7B05 /* Resources */,
@@ -205,6 +207,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = NO;
+				ENABLE_DEBUG_DYLIB = NO;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -213,6 +216,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				OTHER_CODE_SIGN_FLAGS = "-r \"$(SRCROOT)/Tabbit/Signing.requirements\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.byronf-sama.tabbit";
 				PRODUCT_NAME = Tabbit;
 				SDKROOT = macosx;
@@ -353,6 +357,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = NO;
+				ENABLE_DEBUG_DYLIB = NO;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -361,6 +366,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				OTHER_CODE_SIGN_FLAGS = "-r \"$(SRCROOT)/Tabbit/Signing.requirements\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.byronf-sama.tabbit";
 				PRODUCT_NAME = Tabbit;
 				SDKROOT = macosx;

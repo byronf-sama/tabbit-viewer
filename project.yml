@@ -21,6 +21,9 @@ targets:
       - path: Tabbit
         excludes:
           - Resources/web
+          - Signing.requirements
+      - path: Tabbit/Signing.requirements
+        buildPhase: none
       # Built web bundle (npm run build in web/), copied into the app as a folder: Contents/Resources/web
       - path: Tabbit/Resources/web
         type: folder
@@ -36,6 +39,12 @@ targets:
         CODE_SIGN_IDENTITY: "-"
         CODE_SIGN_STYLE: Manual
         DEVELOPMENT_TEAM: ""
+        # An ad-hoc signature identifies the app by the hash of this exact build, so macOS would
+        # forget privacy grants (e.g. access to Documents) on every rebuild. Embedding a
+        # designated requirement based on the bundle ID keeps the identity stable.
+        OTHER_CODE_SIGN_FLAGS: -r "$(SRCROOT)/Tabbit/Signing.requirements"
+        # Keep everything in the main executable so the requirement applies only to the app.
+        ENABLE_DEBUG_DYLIB: NO
         ENABLE_APP_SANDBOX: NO
         ENABLE_HARDENED_RUNTIME: NO
         DEAD_CODE_STRIPPING: YES
