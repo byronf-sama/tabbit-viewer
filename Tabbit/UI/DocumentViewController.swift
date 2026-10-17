@@ -32,7 +32,7 @@ final class DocumentViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        preview.show(document.text)
+        preview.show(document.text, isSaved: true)
     }
 
     /// The view that should get keyboard focus for the current mode.
@@ -58,7 +58,7 @@ final class DocumentViewController: NSViewController {
 
     func documentTextDidLoad() {
         (editorView?.documentView as? NSTextView)?.string = document.text
-        preview.show(document.text)
+        preview.show(document.text, isSaved: true)
     }
 
     private func embed(_ subview: NSView) {
