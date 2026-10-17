@@ -38,6 +38,9 @@ There are no automated tests. Verify changes by running the app against `samples
 
 - `project.yml`: XcodeGen spec (deployment target, signing, build settings).
 - `Tabbit/Info.plist`: document types (Markdown rank Default, HTML rank Alternate, role Editor).
+- `Tabbit/AppIcon.icon`: app icon, an Icon Composer document (open it with Xcode > Open Developer
+  Tool > Icon Composer). Orange solid fill + one rabbit layer (translucency off, so the body stays
+  cream). The layer is `design/tabbit-logo.png` with the orange background keyed out.
 - `Tabbit/App/`: entry point, app delegate, main menu (built in code; no nib/storyboard).
 - `Tabbit/Document/`: `TabbitDocument` (one NSDocument for both types; owns all file I/O),
   `TabbitDocumentController` (no untitled docs: New and the tab bar's + show the Open panel).
@@ -87,6 +90,10 @@ There are no automated tests. Verify changes by running the app against `samples
   comparisons.
 - **WebKit text substitutions** (smart quotes/dashes, autocorrect) are disabled through
   registered user defaults in `AppDelegate`; keep them off or source edits get mangled.
+- **App icon:** XcodeGen doesn't know `.icon` documents; `options.fileTypes.icon` in project.yml
+  makes it a single file in the Resources phase, and Xcode compiles it with actool
+  (`ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon`) into `Assets.car` + `AppIcon.icns`. If the
+  Dock/Finder keep showing an old icon after reinstalling: `touch /Applications/Tabbit.app; killall Dock`.
 - **Launch Services:** builds register themselves, so Finder's Open With can list several
   copies. `install.sh` unregisters its build output. For a Debug build, run
   `/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -u <path to Tabbit.app>`.

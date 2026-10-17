@@ -20,6 +20,7 @@
 		978B88EA5BC40070CF923DB7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C78B9D24C6789810B2D59F /* main.swift */; };
 		C04B0F161AAB3FA29F221F86 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B869DC7426065353BB4BD42 /* MainMenu.swift */; };
 		C725ABDD8E927ECAAF19B3CA /* EditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7841A9F5FB7D776443E4DC4B /* EditorController.swift */; };
+		C97C658DFD1E2F671B56BFE6 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = C8D7D132EC4D00FD83666F54 /* AppIcon.icon */; };
 		D4FD822D6EA8D5E7B1F7EF5E /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72869C21B8E4CC6B2078E13A /* DocumentViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		8A100DDBF8ACEF4EFF0BD386 /* TabbitDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbitDocument.swift; sourceTree = "<group>"; };
 		8BEDCF1B47BC3188B0457FDA /* Tabbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tabbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95083A10868E5AFD7D22ED80 /* PageUIDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageUIDelegate.swift; sourceTree = "<group>"; };
+		C8D7D132EC4D00FD83666F54 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		CF1BBE0E349719CAA5A1CC4E /* LinkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkRouter.swift; sourceTree = "<group>"; };
 		D9C744B1D622C57415FDE0B7 /* DocumentWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		DFD1A10656911A2EDBF3E982 /* TabbitDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbitDocumentController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		BEE5E9309051D30D2F0B510F /* Tabbit */ = {
 			isa = PBXGroup;
 			children = (
+				C8D7D132EC4D00FD83666F54 /* AppIcon.icon */,
 				4511C2675F3789B268BD0CB6 /* Info.plist */,
 				5F4C073E0D1A1CC90E6A5D25 /* Signing.requirements */,
 				83F9914BC6A11FE2DCDABFCF /* App */,
@@ -175,6 +178,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C97C658DFD1E2F671B56BFE6 /* AppIcon.icon in Resources */,
 				7F190513A93C831044BDABCA /* web in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

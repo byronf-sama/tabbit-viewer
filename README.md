@@ -82,6 +82,8 @@ See [CLAUDE.md](CLAUDE.md) for the project layout and build commands. In short:
 - `cd web && npm install && npm run build` rebuilds the bundled web code in
   `Tabbit/Resources/web/` (also committed; Node is only needed when changing `web/`).
 - `samples/` has made-up files for trying out rendering, links and linting.
+- The app icon is `Tabbit/AppIcon.icon` (edit it in Icon Composer, which comes with Xcode); the
+  original artwork is `design/tabbit-logo.png`.
 
 ## License
 

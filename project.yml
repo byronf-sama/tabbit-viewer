@@ -7,6 +7,11 @@ options:
     macOS: "26.0"
   createIntermediateGroups: true
   developmentLanguage: en
+  # Icon Composer documents are folders that Xcode compiles as a single resource.
+  fileTypes:
+    icon:
+      file: true
+      buildPhase: resources
 
 settings:
   base:
@@ -34,6 +39,8 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: io.github.byronf-sama.tabbit
         INFOPLIST_FILE: Tabbit/Info.plist
         GENERATE_INFOPLIST_FILE: NO
+        # Tabbit/AppIcon.icon (Icon Composer; source art in design/tabbit-logo.png)
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SWIFT_VERSION: "5.0"
         # Ad-hoc signing: no Apple Developer account, no team, no sandbox.
         CODE_SIGN_IDENTITY: "-"
