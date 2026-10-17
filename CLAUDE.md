@@ -43,11 +43,17 @@ There are no automated tests. Verify changes by running the app against `samples
   cream). The layer is `design/tabbit-logo.png` with the orange background keyed out.
   `design/tabbit-icon.png` (shown in the README) is rendered from it; after editing the icon run:
   `"/Applications/Xcode.app/Contents/Applications/Icon Composer.app/Contents/Executables/ictool" Tabbit/AppIcon.icon --export-image --output-file design/tabbit-icon.png --platform macOS --rendition Default --width 128 --height 128 --scale 2`
-- `Tabbit/App/`: entry point, app delegate, main menu (built in code; no nib/storyboard).
+- `Tabbit/App/`: entry point, app delegate, main menu (built in code; no nib/storyboard),
+  `AppSettings` (UserDefaults-backed settings, e.g. Show File Path).
 - `Tabbit/Document/`: `TabbitDocument` (one NSDocument for both types; owns all file I/O),
   `TabbitDocumentController` (no untitled docs: New and the tab bar's + show the Open panel).
 - `Tabbit/UI/`:
-  - `DocumentWindowController`: window, native tabs, View/Edit toolbar, edited dot on tabs.
+  - `DocumentWindowController`: window, native tabs, View/Edit toolbar, edited dot on tabs,
+    Reveal in Finder.
+  - `TabContextMenu`: adds Reveal in Finder to the tab's right-click menu. AppKit has no API
+    for that menu; its items target the clicked tab's window, so the item is appended when the
+    menu starts tracking (`NSMenu.didBeginTrackingNotification`).
+  - `PathBar`: the file-path bar at the bottom of each tab (View > Show File Path).
   - `DocumentViewController`: switches between the preview and editor web views.
   - `PreviewController`: View mode. `LocalFileSchemeHandler`: serves the Markdown page.
   - `EditorController`: Edit mode bridge.

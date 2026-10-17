@@ -15,6 +15,10 @@ final class DocumentViewController: NSViewController {
     /// Created the first time the tab switches to Edit.
     private var editor: EditorController?
 
+    /// Holds the preview and editor web views; the path bar sits below it.
+    private let webContainer = NSView()
+    private let pathBar = PathBar()
+
     init(document: TabbitDocument) {
         self.document = document
         super.init(nibName: nil, bundle: nil)
@@ -26,13 +30,33 @@ final class DocumentViewController: NSViewController {
     }
 
     override func loadView() {
-        view = NSView(frame: NSRect(x: 0, y: 0, width: 980, height: 760))
+        let root = NSView(frame: NSRect(x: 0, y: 0, width: 980, height: 760))
+        // A hidden arranged view is taken out of the layout, so the web views fill the tab
+        // when the path bar is off.
+        let stack = NSStackView(views: [webContainer, pathBar])
+        stack.orientation = .vertical
+        stack.spacing = 0
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        webContainer.setContentHuggingPriority(.defaultLow, for: .vertical)
+        root.addSubview(stack)
+        NSLayoutConstraint.activate([
+            stack.topAnchor.constraint(equalTo: root.topAnchor),
+            stack.bottomAnchor.constraint(equalTo: root.bottomAnchor),
+            stack.leadingAnchor.constraint(equalTo: root.leadingAnchor),
+            stack.trailingAnchor.constraint(equalTo: root.trailingAnchor),
+            webContainer.widthAnchor.constraint(equalTo: stack.widthAnchor),
+            pathBar.widthAnchor.constraint(equalTo: stack.widthAnchor),
+        ])
+        view = root
         embed(preview.webView)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         preview.show(document.text, isSaved: true)
+        updatePathBar()
+        NotificationCenter.default.addObserver(self, selector: #selector(updatePathBar),
+                                               name: AppSettings.showFilePathDidChange, object: nil)
     }
 
     /// The view that should get keyboard focus for the current mode.
@@ -75,6 +99,15 @@ final class DocumentViewController: NSViewController {
         editor?.markSaved(text)
     }
 
+    func documentLocationDidChange() {
+        updatePathBar()
+    }
+
+    @objc private func updatePathBar() {
+        pathBar.path = document.fileURL?.path(percentEncoded: false) ?? ""
+        pathBar.isHidden = !AppSettings.showFilePath
+    }
+
     /// The document was (re)read from disk, e.g. File > Revert to Saved.
     func documentTextDidLoad() {
         editor?.load(document.text)
@@ -92,8 +125,8 @@ final class DocumentViewController: NSViewController {
     }
 
     private func embed(_ subview: NSView) {
-        subview.frame = view.bounds
+        subview.frame = webContainer.bounds
         subview.autoresizingMask = [.width, .height]
-        view.addSubview(subview)
+        webContainer.addSubview(subview)
     }
 }

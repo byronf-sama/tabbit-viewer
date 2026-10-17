@@ -67,6 +67,8 @@ Quit Tabbit before running the script.
 | Close tab | ⌘W |
 | Next / previous tab | ⌃⇥ / ⌃⇧⇥ |
 | Find in the editor | ⌘F |
+| Reveal the file in Finder | ⌥⌘R, or right-click the tab > Reveal in Finder |
+| Show/hide each tab's file path | ⌥⌘P (View > Show File Path) |
 
 - Tabs with unsaved changes show a dot. Closing one, or quitting, asks whether to save.
 - In View mode, web links open in your default browser. Links to local Markdown or HTML files open

@@ -1,6 +1,6 @@
 import AppKit
 
-final class AppDelegate: NSObject, NSApplicationDelegate {
+final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
     func applicationWillFinishLaunching(_ notification: Notification) {
         // The editor is a web view: keep WebKit's text substitutions (which follow the system
         // "smart quotes and dashes" setting) and autocorrect out of source code.
@@ -13,6 +13,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             "WebAutomaticLinkDetectionEnabled": false,
         ])
         NSApp.mainMenu = MainMenu.make()
+        TabContextMenu.install()
     }
 
     /// Tabbit has no untitled documents. AppKit calls this at launch when no file was opened
@@ -24,5 +25,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         true
+    }
+
+    // MARK: View > Show/Hide File Path (applies to all tabs)
+
+    @IBAction func toggleFilePath(_ sender: Any?) {
+        AppSettings.showFilePath.toggle()
+    }
+
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        if menuItem.action == #selector(toggleFilePath(_:)) {
+            menuItem.title = AppSettings.showFilePath ? "Hide File Path" : "Show File Path"
+        }
+        return true
     }
 }

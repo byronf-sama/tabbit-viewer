@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C41887D7B3BFEF03D23C9AC /* TabbitDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A100DDBF8ACEF4EFF0BD386 /* TabbitDocument.swift */; };
+		0ED98D34BA7FD3784B9AD7BF /* PathBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B7467846E1B29C323578E /* PathBar.swift */; };
 		1CAA86B2B07B2B39ACCBA586 /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C744B1D622C57415FDE0B7 /* DocumentWindowController.swift */; };
 		1ECAEB7A9667839083D4AC8E /* TabbitWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAA7DB716B38CDEA7079FBE /* TabbitWebView.swift */; };
 		325D44213F48F98A4A48DA2A /* TabbitDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD1A10656911A2EDBF3E982 /* TabbitDocumentController.swift */; };
@@ -18,10 +19,12 @@
 		7F190513A93C831044BDABCA /* web in Resources */ = {isa = PBXBuildFile; fileRef = 4C5164EF5C7162F899708DCF /* web */; };
 		919CCED114F87445CCF6622A /* LinkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1BBE0E349719CAA5A1CC4E /* LinkRouter.swift */; };
 		978B88EA5BC40070CF923DB7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C78B9D24C6789810B2D59F /* main.swift */; };
+		B1A0A790DFE2A6985438F3F7 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6B3E56D048E532B40B8FBC /* AppSettings.swift */; };
 		C04B0F161AAB3FA29F221F86 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B869DC7426065353BB4BD42 /* MainMenu.swift */; };
 		C725ABDD8E927ECAAF19B3CA /* EditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7841A9F5FB7D776443E4DC4B /* EditorController.swift */; };
 		C97C658DFD1E2F671B56BFE6 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = C8D7D132EC4D00FD83666F54 /* AppIcon.icon */; };
 		D4FD822D6EA8D5E7B1F7EF5E /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72869C21B8E4CC6B2078E13A /* DocumentViewController.swift */; };
+		E384564953ACDACAABA95044 /* TabContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91A3698159F94CC89ED65E0 /* TabContextMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,7 @@
 		5F4C073E0D1A1CC90E6A5D25 /* Signing.requirements */ = {isa = PBXFileReference; path = Signing.requirements; sourceTree = "<group>"; };
 		68DF8AB1F96D1ED2F3766F92 /* LocalFileSchemeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileSchemeHandler.swift; sourceTree = "<group>"; };
 		6AC3EEA2133C3EA6E832EFA4 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
+		6F6B3E56D048E532B40B8FBC /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		72869C21B8E4CC6B2078E13A /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		7841A9F5FB7D776443E4DC4B /* EditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorController.swift; sourceTree = "<group>"; };
 		7AAA7DB716B38CDEA7079FBE /* TabbitWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbitWebView.swift; sourceTree = "<group>"; };
@@ -39,8 +43,10 @@
 		8A100DDBF8ACEF4EFF0BD386 /* TabbitDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbitDocument.swift; sourceTree = "<group>"; };
 		8BEDCF1B47BC3188B0457FDA /* Tabbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tabbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95083A10868E5AFD7D22ED80 /* PageUIDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageUIDelegate.swift; sourceTree = "<group>"; };
+		B91A3698159F94CC89ED65E0 /* TabContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContextMenu.swift; sourceTree = "<group>"; };
 		C8D7D132EC4D00FD83666F54 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		CF1BBE0E349719CAA5A1CC4E /* LinkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkRouter.swift; sourceTree = "<group>"; };
+		D03B7467846E1B29C323578E /* PathBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathBar.swift; sourceTree = "<group>"; };
 		D9C744B1D622C57415FDE0B7 /* DocumentWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		DFD1A10656911A2EDBF3E982 /* TabbitDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbitDocumentController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,8 +61,10 @@
 				CF1BBE0E349719CAA5A1CC4E /* LinkRouter.swift */,
 				68DF8AB1F96D1ED2F3766F92 /* LocalFileSchemeHandler.swift */,
 				95083A10868E5AFD7D22ED80 /* PageUIDelegate.swift */,
+				D03B7467846E1B29C323578E /* PathBar.swift */,
 				6AC3EEA2133C3EA6E832EFA4 /* PreviewController.swift */,
 				7AAA7DB716B38CDEA7079FBE /* TabbitWebView.swift */,
+				B91A3698159F94CC89ED65E0 /* TabContextMenu.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -81,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				892B042A46CC64F3B6E9C91E /* AppDelegate.swift */,
+				6F6B3E56D048E532B40B8FBC /* AppSettings.swift */,
 				34C78B9D24C6789810B2D59F /* main.swift */,
 				5B869DC7426065353BB4BD42 /* MainMenu.swift */,
 			);
@@ -191,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BAE08BA51AC35A32C6F16DE /* AppDelegate.swift in Sources */,
+				B1A0A790DFE2A6985438F3F7 /* AppSettings.swift in Sources */,
 				D4FD822D6EA8D5E7B1F7EF5E /* DocumentViewController.swift in Sources */,
 				1CAA86B2B07B2B39ACCBA586 /* DocumentWindowController.swift in Sources */,
 				C725ABDD8E927ECAAF19B3CA /* EditorController.swift in Sources */,
@@ -198,7 +208,9 @@
 				3C4609C19CA68680AE0DF58F /* LocalFileSchemeHandler.swift in Sources */,
 				C04B0F161AAB3FA29F221F86 /* MainMenu.swift in Sources */,
 				7789381C32B3C38E02DBD7EC /* PageUIDelegate.swift in Sources */,
+				0ED98D34BA7FD3784B9AD7BF /* PathBar.swift in Sources */,
 				7C43834D1EEE5647499387FA /* PreviewController.swift in Sources */,
+				E384564953ACDACAABA95044 /* TabContextMenu.swift in Sources */,
 				0C41887D7B3BFEF03D23C9AC /* TabbitDocument.swift in Sources */,
 				325D44213F48F98A4A48DA2A /* TabbitDocumentController.swift in Sources */,
 				1ECAEB7A9667839083D4AC8E /* TabbitWebView.swift in Sources */,

@@ -41,6 +41,9 @@ enum MainMenu {
         menu.addItem(withTitle: "Save", action: #selector(NSDocument.save(_:)), keyEquivalent: "s")
         menu.addItem(withTitle: "Save As…", action: #selector(NSDocument.saveAs(_:)), keyEquivalent: "S")
         menu.addItem(withTitle: "Revert to Saved", action: #selector(NSDocument.revertToSaved(_:)), keyEquivalent: "")
+        menu.addItem(.separator())
+        menu.addItem(withTitle: "Reveal in Finder", action: #selector(DocumentWindowController.revealInFinder(_:)), keyEquivalent: "r")
+            .keyEquivalentModifierMask = [.command, .option]
         return menu
     }
 
@@ -62,6 +65,9 @@ enum MainMenu {
         menu.addItem(withTitle: "Edit Mode", action: #selector(DocumentWindowController.toggleEditMode(_:)), keyEquivalent: "e")
         menu.addItem(.separator())
         menu.addItem(withTitle: "Show Toolbar", action: #selector(NSWindow.toggleToolbarShown(_:)), keyEquivalent: "t")
+            .keyEquivalentModifierMask = [.command, .option]
+        // Same shortcut as Finder's View > Show Path Bar.
+        menu.addItem(withTitle: "Show File Path", action: #selector(AppDelegate.toggleFilePath(_:)), keyEquivalent: "p")
             .keyEquivalentModifierMask = [.command, .option]
         menu.addItem(withTitle: "Enter Full Screen", action: #selector(NSWindow.toggleFullScreen(_:)), keyEquivalent: "f")
             .keyEquivalentModifierMask = [.command, .control]

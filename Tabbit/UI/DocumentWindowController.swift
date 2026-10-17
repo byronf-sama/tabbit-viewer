@@ -74,6 +74,18 @@ final class DocumentWindowController: NSWindowController, NSToolbarDelegate, NSM
         content.documentTextDidLoad()
     }
 
+    /// Called whenever the document's name or location changes (open, Save As, rename, move).
+    override func synchronizeWindowTitleWithDocumentName() {
+        super.synchronizeWindowTitleWithDocumentName()
+        content.documentLocationDidChange()
+    }
+
+    /// Opens a Finder window on the document's folder with the file selected.
+    @IBAction func revealInFinder(_ sender: Any?) {
+        guard let url = (document as? NSDocument)?.fileURL else { return NSSound.beep() }
+        NSWorkspace.shared.activateFileViewerSelecting([url])
+    }
+
     /// Native tabs don't mark unsaved documents (only the window's close button does, and only
     /// for the selected tab), so put a dot in the tab itself.
     override func setDocumentEdited(_ dirtyFlag: Bool) {
@@ -111,6 +123,9 @@ final class DocumentWindowController: NSWindowController, NSToolbarDelegate, NSM
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         if menuItem.action == #selector(toggleEditMode(_:)) {
             menuItem.state = content.mode == .edit ? .on : .off
+        }
+        if menuItem.action == #selector(revealInFinder(_:)) {
+            return (document as? NSDocument)?.fileURL != nil
         }
         return true
     }
