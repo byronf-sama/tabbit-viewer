@@ -41,6 +41,8 @@ There are no automated tests. Verify changes by running the app against `samples
 - `Tabbit/AppIcon.icon`: app icon, an Icon Composer document (open it with Xcode > Open Developer
   Tool > Icon Composer). Orange solid fill + one rabbit layer (translucency off, so the body stays
   cream). The layer is `design/tabbit-logo.png` with the orange background keyed out.
+  `design/tabbit-icon.png` (shown in the README) is rendered from it; after editing the icon run:
+  `"/Applications/Xcode.app/Contents/Applications/Icon Composer.app/Contents/Executables/ictool" Tabbit/AppIcon.icon --export-image --output-file design/tabbit-icon.png --platform macOS --rendition Default --width 128 --height 128 --scale 2`
 - `Tabbit/App/`: entry point, app delegate, main menu (built in code; no nib/storyboard).
 - `Tabbit/Document/`: `TabbitDocument` (one NSDocument for both types; owns all file I/O),
   `TabbitDocumentController` (no untitled docs: New and the tab bar's + show the Open panel).

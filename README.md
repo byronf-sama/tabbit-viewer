@@ -1,3 +1,5 @@
+<img src="design/tabbit-icon.png" width="96" alt="Tabbit app icon">
+
 # Tabbit
 
 A lightweight, tabbed viewer and editor for Markdown and HTML files on macOS.
