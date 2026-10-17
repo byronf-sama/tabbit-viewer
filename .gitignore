@@ -60,3 +60,16 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# Tabbit
+#
+# Local build output (xcodebuild -derivedDataPath build/, scripts/install.sh)
+build/
+DerivedData/
+
+# Node (web/ sources). The built bundle in Tabbit/Resources/web/ IS committed.
+node_modules/
+npm-debug.log*
+
+# macOS
+.DS_Store

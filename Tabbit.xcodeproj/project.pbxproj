@@ -1,0 +1,356 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C41887D7B3BFEF03D23C9AC /* TabbitDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A100DDBF8ACEF4EFF0BD386 /* TabbitDocument.swift */; };
+		1CAA86B2B07B2B39ACCBA586 /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C744B1D622C57415FDE0B7 /* DocumentWindowController.swift */; };
+		325D44213F48F98A4A48DA2A /* TabbitDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD1A10656911A2EDBF3E982 /* TabbitDocumentController.swift */; };
+		4BAE08BA51AC35A32C6F16DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B042A46CC64F3B6E9C91E /* AppDelegate.swift */; };
+		978B88EA5BC40070CF923DB7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C78B9D24C6789810B2D59F /* main.swift */; };
+		C04B0F161AAB3FA29F221F86 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B869DC7426065353BB4BD42 /* MainMenu.swift */; };
+		D4FD822D6EA8D5E7B1F7EF5E /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72869C21B8E4CC6B2078E13A /* DocumentViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		34C78B9D24C6789810B2D59F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		4511C2675F3789B268BD0CB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5B869DC7426065353BB4BD42 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		72869C21B8E4CC6B2078E13A /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
+		892B042A46CC64F3B6E9C91E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8A100DDBF8ACEF4EFF0BD386 /* TabbitDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbitDocument.swift; sourceTree = "<group>"; };
+		8BEDCF1B47BC3188B0457FDA /* Tabbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tabbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9C744B1D622C57415FDE0B7 /* DocumentWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
+		DFD1A10656911A2EDBF3E982 /* TabbitDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbitDocumentController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		08E4534EE582A65D7EB6DD54 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				72869C21B8E4CC6B2078E13A /* DocumentViewController.swift */,
+				D9C744B1D622C57415FDE0B7 /* DocumentWindowController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		7A5BD5E1AF3BF62ED22CB9D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8BEDCF1B47BC3188B0457FDA /* Tabbit.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		83F9914BC6A11FE2DCDABFCF /* App */ = {
+			isa = PBXGroup;
+			children = (
+				892B042A46CC64F3B6E9C91E /* AppDelegate.swift */,
+				34C78B9D24C6789810B2D59F /* main.swift */,
+				5B869DC7426065353BB4BD42 /* MainMenu.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B6291D0171176A13B0B9AE29 /* Document */ = {
+			isa = PBXGroup;
+			children = (
+				8A100DDBF8ACEF4EFF0BD386 /* TabbitDocument.swift */,
+				DFD1A10656911A2EDBF3E982 /* TabbitDocumentController.swift */,
+			);
+			path = Document;
+			sourceTree = "<group>";
+		};
+		BEE5E9309051D30D2F0B510F /* Tabbit */ = {
+			isa = PBXGroup;
+			children = (
+				4511C2675F3789B268BD0CB6 /* Info.plist */,
+				83F9914BC6A11FE2DCDABFCF /* App */,
+				B6291D0171176A13B0B9AE29 /* Document */,
+				08E4534EE582A65D7EB6DD54 /* UI */,
+			);
+			path = Tabbit;
+			sourceTree = "<group>";
+		};
+		CAF39BB06A1F79988E93A36B = {
+			isa = PBXGroup;
+			children = (
+				BEE5E9309051D30D2F0B510F /* Tabbit */,
+				7A5BD5E1AF3BF62ED22CB9D9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9E53509483AA4438833CC5CC /* Tabbit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2F3C066989259453E64D546 /* Build configuration list for PBXNativeTarget "Tabbit" */;
+			buildPhases = (
+				9AFD826029E5D3A24541FC9E /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tabbit;
+			packageProductDependencies = (
+			);
+			productName = Tabbit;
+			productReference = 8BEDCF1B47BC3188B0457FDA /* Tabbit.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		889935E5751CDF4FC3AB5D18 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					9E53509483AA4438833CC5CC = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 09C8C5AA0F7E654F838B22DF /* Build configuration list for PBXProject "Tabbit" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CAF39BB06A1F79988E93A36B;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 7A5BD5E1AF3BF62ED22CB9D9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9E53509483AA4438833CC5CC /* Tabbit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9AFD826029E5D3A24541FC9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BAE08BA51AC35A32C6F16DE /* AppDelegate.swift in Sources */,
+				D4FD822D6EA8D5E7B1F7EF5E /* DocumentViewController.swift in Sources */,
+				1CAA86B2B07B2B39ACCBA586 /* DocumentWindowController.swift in Sources */,
+				C04B0F161AAB3FA29F221F86 /* MainMenu.swift in Sources */,
+				0C41887D7B3BFEF03D23C9AC /* TabbitDocument.swift in Sources */,
+				325D44213F48F98A4A48DA2A /* TabbitDocumentController.swift in Sources */,
+				978B88EA5BC40070CF923DB7 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		48F3E7D5EF3E72C1DEDE4525 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Tabbit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.byronf-sama.tabbit";
+				PRODUCT_NAME = Tabbit;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C11AB8676B0ED61786624BAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C270DFEFD815C6331E87C0BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C5F791B8E09A90E830ACA6CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Tabbit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.byronf-sama.tabbit";
+				PRODUCT_NAME = Tabbit;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		09C8C5AA0F7E654F838B22DF /* Build configuration list for PBXProject "Tabbit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C270DFEFD815C6331E87C0BA /* Debug */,
+				C11AB8676B0ED61786624BAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F2F3C066989259453E64D546 /* Build configuration list for PBXNativeTarget "Tabbit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48F3E7D5EF3E72C1DEDE4525 /* Debug */,
+				C5F791B8E09A90E830ACA6CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 889935E5751CDF4FC3AB5D18 /* Project object */;
+}

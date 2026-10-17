@@ -1,0 +1,26 @@
+:root {
+  color-scheme: light dark;
+  --accent: #d9620b;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  line-height: 1.5;
+}
+
+header {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 1rem;
+}
+
+.tagline {
+  color: var(--accent);
+  font-style: italic;
+}
+
+#script-status.ok {
+  color: #1a7f37;
+}
