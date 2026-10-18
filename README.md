@@ -72,14 +72,15 @@ however you install them. If Tabbit still won't open after step 3, that's the li
 - The first time Tabbit reads files in a protected folder (Documents, Desktop, Downloads, iCloud
   Drive), macOS asks for permission. Click **Allow**; it's asked once per folder and remembered
   across updates.
-- **Reveal in Finder** opens the file's folder in a new tab of your current Finder window. For
-  that, the first time you use it macOS asks two things:
+- **Reveal in Finder** works with Finder's tabs (see [Using Tabbit](#using-tabbit)). For that,
+  the first time you use it macOS asks two things:
   - "Tabbit wants to control Finder": click **Allow**.
   - "Tabbit would like to control this computer using accessibility features": click **Open
     System Settings** and turn on Tabbit. Apps can't ask Finder for a tab, so Tabbit presses
     Finder's **File > New Tab**.
 
-  Until both are allowed, Reveal in Finder opens a new Finder window. Both settings live under
+  Until both are allowed, Reveal in Finder may open a new Finder window instead of a tab. Both
+  settings live under
   **System Settings > Privacy & Security** (Automation and Accessibility) and survive updates.
 - To make Tabbit the default app for Markdown: in Finder, select a `.md` file, choose
   **File > Get Info**, pick Tabbit under **Open with**, and click **Change All…**. Tabbit appears
@@ -111,8 +112,9 @@ updated app. Permissions you've already granted carry over.
 | Reveal the file in Finder | ⌥⌘R, or right-click the tab > Reveal in Finder |
 | Show/hide each tab's file path | ⌥⌘P (View > Show File Path) |
 
-- Reveal in Finder opens a new tab in the front Finder window, unless that window already shows
-  the file's folder (then the file is just selected). With no Finder window open, it opens one.
+- Reveal in Finder selects the file in Finder and scrolls to it. If a Finder tab already shows
+  the file's folder, it switches to that tab. Otherwise it opens the folder in a new tab of the
+  front Finder window, or in a new window if no Finder window is open.
 - Tabs with unsaved changes show a dot. Closing one, or quitting, asks whether to save.
 - In View mode, web links open in your default browser. Links to local Markdown or HTML files open
   in a new tab (or switch to the tab if the file is already open). Other local files open in their

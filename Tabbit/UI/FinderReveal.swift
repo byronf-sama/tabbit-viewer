@@ -1,9 +1,11 @@
 import AppKit
 import ApplicationServices
 
-/// Reveal in Finder that opens the file's folder in a new tab of the frontmost Finder window,
-/// where NSWorkspace would open a new window. If that window already shows the folder, the file
-/// is selected there; with no Finder window open, Finder opens one.
+/// Reveal in Finder that reuses Finder tabs, where NSWorkspace would open a new window:
+/// - a Finder tab (in any window) already shows the file's folder: switch to it;
+/// - otherwise, open the folder in a new tab of the frontmost Finder window;
+/// - no Finder window open: Finder opens one.
+/// In each case the file is selected and scrolled into view (Finder's `reveal`).
 ///
 /// Telling Finder what to do needs the user's one-time Automation consent ("Tabbit wants to
 /// control Finder", explained by NSAppleEventsUsageDescription in Info.plist). Finder can't
@@ -19,7 +21,7 @@ enum FinderReveal {
             let finder = NSAppleEventDescriptor(bundleIdentifier: "com.apple.finder")
             let status = AEDeterminePermissionToAutomateTarget(finder.aeDesc, typeWildCard, typeWildCard, true)
             DispatchQueue.main.async {
-                if status == noErr, revealInFinderWindow(url) { return }
+                if status == noErr, revealInFinderTab(url) { return }
                 NSWorkspace.shared.activateFileViewerSelecting([url])
             }
         }
@@ -27,14 +29,14 @@ enum FinderReveal {
 
     /// Returns false if the file wasn't revealed, so the caller can fall back to NSWorkspace.
     @MainActor
-    private static func revealInFinderWindow(_ url: URL) -> Bool {
+    private static func revealInFinderTab(_ url: URL) -> Bool {
         let paths = """
             set theFile to POSIX file \(appleScriptString(url.path(percentEncoded: false))) as alias
             set theFolder to POSIX file \(appleScriptString(url.deletingLastPathComponent().path(percentEncoded: false))) as alias
             """
         NSApp.yieldActivation(toApplicationWithBundleIdentifier: "com.apple.finder")
-        // Returns "done", or the number of Finder windows (each tab counts as one) when a new
-        // tab is needed.
+        // Finder lists each tab as a Finder window, frontmost first. Returns "revealed", or the
+        // number of Finder windows when the folder needs a new tab.
         guard let result = run("""
             \(paths)
             tell application "Finder"
@@ -42,20 +44,23 @@ enum FinderReveal {
                 set openWindows to every Finder window whose collapsed is false
                 if openWindows is {} then
                     reveal theFile
-                    return "done"
+                    return "revealed"
                 end if
-                set frontWindow to item 1 of openWindows
-                set index of frontWindow to 1
-                try
-                    if (target of frontWindow as alias as text) is (theFolder as text) then
-                        select theFile
-                        return "done"
-                    end if
-                end try
+                repeat with i from 1 to count openWindows
+                    set w to item i of openWindows
+                    try
+                        if (target of w as alias as text) is (theFolder as text) then
+                            set index of w to 1
+                            reveal theFile
+                            return "revealed"
+                        end if
+                    end try
+                end repeat
+                set index of item 1 of openWindows to 1
                 return (count Finder windows) as text
             end tell
             """) else { return false }
-        if result == "done" { return true }
+        if result == "revealed" { return true }
 
         guard let windowCount = Int(result), hasAccessibilityAccess(), pressNewTab() else { return false }
         // The tab may appear a moment after the press; wait for it before retargeting window 1,
@@ -69,7 +74,7 @@ enum FinderReveal {
                 end repeat
                 if (count Finder windows) is \(windowCount) then error "Finder didn't open a tab"
                 set target of Finder window 1 to theFolder
-                select theFile
+                reveal theFile
             end tell
             """) != nil
     }

@@ -50,11 +50,11 @@ There are no automated tests. Verify changes by running the app against `samples
 - `Tabbit/UI/`:
   - `DocumentWindowController`: window, native tabs, View/Edit toolbar, edited dot on tabs,
     Reveal in Finder.
-  - `FinderReveal`: Reveal in Finder in a new tab of the front Finder window. Finder can't
-    script tabs, so it presses Finder's File > New Tab through Accessibility (found by its ⌘T
-    shortcut, since titles are localized), then sets that tab's target with AppleScript. Falls
-    back to `NSWorkspace.activateFileViewerSelecting` (a new window) and never retargets an
-    existing tab.
+  - `FinderReveal`: Reveal in Finder that reuses Finder tabs. It switches to a tab already
+    showing the folder; otherwise it presses Finder's File > New Tab through Accessibility
+    (found by its ⌘T shortcut, since titles are localized) and sets that tab's target with
+    AppleScript. Then Finder's `reveal` selects the file and scrolls to it. Falls back to
+    `NSWorkspace.activateFileViewerSelecting` (a new window) and never retargets an existing tab.
   - `TabContextMenu`: adds Reveal in Finder to the tab's right-click menu. AppKit has no API
     for that menu; its items target the clicked tab's window, so the item is appended when the
     menu starts tracking (`NSMenu.didBeginTrackingNotification`).
@@ -106,6 +106,9 @@ There are no automated tests. Verify changes by running the app against `samples
   designated requirement, so they survive rebuilds. To see the prompts again:
   `tccutil reset AppleEvents io.github.byronf-sama.tabbit` and
   `tccutil reset Accessibility io.github.byronf-sama.tabbit`.
+- **Finder scripting:** every tab is its own `Finder window` (frontmost first, with a stable
+  `id`), and `set index of <tab> to 1` switches to that tab. Loop over a stored list or by
+  index: `repeat with w in every Finder window` fails on property access.
 - **Don't standardize URLs passed to WebKit.** `standardizedFileURL` turns `/private/tmp/…` into
   `/tmp/…`, and the file then falls outside the folder WebKit was granted. Standardize only for
   comparisons.
