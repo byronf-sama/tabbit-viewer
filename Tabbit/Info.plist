@@ -29,7 +29,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSAppleEventsUsageDescription</key>
-	<string>Tabbit asks Finder to show files in your current Finder window when you use Reveal in Finder.</string>
+	<string>Tabbit asks Finder to show files in a new tab of your current Finder window when you use Reveal in Finder.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<!-- Let opened HTML pages load plain-http resources, as a browser would. -->

@@ -50,9 +50,11 @@ There are no automated tests. Verify changes by running the app against `samples
 - `Tabbit/UI/`:
   - `DocumentWindowController`: window, native tabs, View/Edit toolbar, edited dot on tabs,
     Reveal in Finder.
-  - `FinderReveal`: Reveal in Finder via AppleScript, so the front Finder window moves to the
-    file's folder instead of a new window opening. Falls back to
-    `NSWorkspace.activateFileViewerSelecting` without Automation consent.
+  - `FinderReveal`: Reveal in Finder in a new tab of the front Finder window. Finder can't
+    script tabs, so it presses Finder's File > New Tab through Accessibility (found by its ⌘T
+    shortcut, since titles are localized), then sets that tab's target with AppleScript. Falls
+    back to `NSWorkspace.activateFileViewerSelecting` (a new window) and never retargets an
+    existing tab.
   - `TabContextMenu`: adds Reveal in Finder to the tab's right-click menu. AppKit has no API
     for that menu; its items target the clicked tab's window, so the item is appended when the
     menu starts tracking (`NSMenu.didBeginTrackingNotification`).
@@ -99,8 +101,11 @@ There are no automated tests. Verify changes by running the app against `samples
 - **Automation consent:** controlling Finder needs the "Tabbit wants to control Finder" consent
   (`NSAppleEventsUsageDescription`). `FinderReveal` asks for it with
   `AEDeterminePermissionToAutomateTarget` on a background queue, because the prompt blocks
-  the calling thread. It is also keyed to the designated requirement, so it survives rebuilds.
-  To see the prompt again: `tccutil reset AppleEvents io.github.byronf-sama.tabbit`.
+  the calling thread. Opening the Finder tab also needs Accessibility access
+  (`AXIsProcessTrustedWithOptions`, asked at most once per launch). Both grants are keyed to the
+  designated requirement, so they survive rebuilds. To see the prompts again:
+  `tccutil reset AppleEvents io.github.byronf-sama.tabbit` and
+  `tccutil reset Accessibility io.github.byronf-sama.tabbit`.
 - **Don't standardize URLs passed to WebKit.** `standardizedFileURL` turns `/private/tmp/…` into
   `/tmp/…`, and the file then falls outside the folder WebKit was granted. Standardize only for
   comparisons.
