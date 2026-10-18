@@ -38,6 +38,35 @@ your account. To install somewhere else, set `TABBIT_INSTALL_DIR`, for example
 
 Because the app is built locally, macOS doesn't quarantine it and Gatekeeper won't block it.
 
+### Or copy it from a Mac that has it
+
+This needs no Xcode on the other Mac, which still needs macOS 26 or later (Apple silicon or
+Intel).
+
+1. On the Mac with Tabbit installed, zip the app. `ditto` keeps the app bundle and its
+   signature intact:
+
+   ```sh
+   ditto -c -k --keepParent /Applications/Tabbit.app ~/Desktop/Tabbit.zip
+   ```
+
+2. Move `Tabbit.zip` to the other Mac any way you like (AirDrop, cloud storage, a USB drive),
+   unzip it, and drag `Tabbit.app` into `/Applications`.
+3. Remove the quarantine mark. macOS marks apps that arrive by AirDrop, download or a message
+   as quarantined, and Gatekeeper then blocks Tabbit ("Apple could not verify…") because it has
+   no developer certificate:
+
+   ```sh
+   xattr -dr com.apple.quarantine /Applications/Tabbit.app
+   ```
+
+   Or skip Terminal: try to open Tabbit, then click **Open Anyway** in **System Settings >
+   Privacy & Security**.
+4. Open Tabbit once so Finder lists it under **Open With**.
+
+On a company-managed Mac, security software may block apps without a developer certificate
+however you install them. If Tabbit still won't open after step 3, that's the likely cause.
+
 ### First run
 
 - The first time Tabbit reads files in a protected folder (Documents, Desktop, Downloads, iCloud
@@ -65,6 +94,9 @@ scripts/install.sh
 ```
 
 Quit Tabbit before running the script.
+
+On a Mac where you copied Tabbit instead, quit Tabbit there and repeat the copy steps with the
+updated app. Permissions you've already granted carry over.
 
 ## Using Tabbit
 
