@@ -25,6 +25,7 @@
 		C97C658DFD1E2F671B56BFE6 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = C8D7D132EC4D00FD83666F54 /* AppIcon.icon */; };
 		D4FD822D6EA8D5E7B1F7EF5E /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72869C21B8E4CC6B2078E13A /* DocumentViewController.swift */; };
 		E384564953ACDACAABA95044 /* TabContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91A3698159F94CC89ED65E0 /* TabContextMenu.swift */; };
+		F6C528E778F057B603FBB6A6 /* FinderReveal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B4DAA8E2AA4AF8DC594BB2 /* FinderReveal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		8A100DDBF8ACEF4EFF0BD386 /* TabbitDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbitDocument.swift; sourceTree = "<group>"; };
 		8BEDCF1B47BC3188B0457FDA /* Tabbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tabbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95083A10868E5AFD7D22ED80 /* PageUIDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageUIDelegate.swift; sourceTree = "<group>"; };
+		96B4DAA8E2AA4AF8DC594BB2 /* FinderReveal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderReveal.swift; sourceTree = "<group>"; };
 		B91A3698159F94CC89ED65E0 /* TabContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContextMenu.swift; sourceTree = "<group>"; };
 		C8D7D132EC4D00FD83666F54 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		CF1BBE0E349719CAA5A1CC4E /* LinkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkRouter.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 				72869C21B8E4CC6B2078E13A /* DocumentViewController.swift */,
 				D9C744B1D622C57415FDE0B7 /* DocumentWindowController.swift */,
 				7841A9F5FB7D776443E4DC4B /* EditorController.swift */,
+				96B4DAA8E2AA4AF8DC594BB2 /* FinderReveal.swift */,
 				CF1BBE0E349719CAA5A1CC4E /* LinkRouter.swift */,
 				68DF8AB1F96D1ED2F3766F92 /* LocalFileSchemeHandler.swift */,
 				95083A10868E5AFD7D22ED80 /* PageUIDelegate.swift */,
@@ -204,6 +207,7 @@
 				D4FD822D6EA8D5E7B1F7EF5E /* DocumentViewController.swift in Sources */,
 				1CAA86B2B07B2B39ACCBA586 /* DocumentWindowController.swift in Sources */,
 				C725ABDD8E927ECAAF19B3CA /* EditorController.swift in Sources */,
+				F6C528E778F057B603FBB6A6 /* FinderReveal.swift in Sources */,
 				919CCED114F87445CCF6622A /* LinkRouter.swift in Sources */,
 				3C4609C19CA68680AE0DF58F /* LocalFileSchemeHandler.swift in Sources */,
 				C04B0F161AAB3FA29F221F86 /* MainMenu.swift in Sources */,

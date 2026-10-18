@@ -80,10 +80,10 @@ final class DocumentWindowController: NSWindowController, NSToolbarDelegate, NSM
         content.documentLocationDidChange()
     }
 
-    /// Opens a Finder window on the document's folder with the file selected.
+    /// Shows the document's file selected in Finder (in the current Finder window if there is one).
     @IBAction func revealInFinder(_ sender: Any?) {
         guard let url = (document as? NSDocument)?.fileURL else { return NSSound.beep() }
-        NSWorkspace.shared.activateFileViewerSelecting([url])
+        FinderReveal.reveal(url)
     }
 
     /// Native tabs don't mark unsaved documents (only the window's close button does, and only

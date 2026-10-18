@@ -43,6 +43,10 @@ Because the app is built locally, macOS doesn't quarantine it and Gatekeeper won
 - The first time Tabbit reads files in a protected folder (Documents, Desktop, Downloads, iCloud
   Drive), macOS asks for permission. Click **Allow**; it's asked once per folder and remembered
   across updates.
+- The first time you use **Reveal in Finder**, macOS asks whether Tabbit may control Finder.
+  Click **Allow** so the file is shown in your current Finder window. If you don't, Reveal in
+  Finder opens a new Finder window instead. To change this later, go to **System Settings >
+  Privacy & Security > Automation > Tabbit**.
 - To make Tabbit the default app for Markdown: in Finder, select a `.md` file, choose
   **File > Get Info**, pick Tabbit under **Open with**, and click **Change All…**. Tabbit appears
   in **Open With** for HTML files but doesn't take over `.html` from your browser.
@@ -70,6 +74,7 @@ Quit Tabbit before running the script.
 | Reveal the file in Finder | ⌥⌘R, or right-click the tab > Reveal in Finder |
 | Show/hide each tab's file path | ⌥⌘P (View > Show File Path) |
 
+- Reveal in Finder shows the file in the front Finder window, or opens a window if none is open.
 - Tabs with unsaved changes show a dot. Closing one, or quitting, asks whether to save.
 - In View mode, web links open in your default browser. Links to local Markdown or HTML files open
   in a new tab (or switch to the tab if the file is already open). Other local files open in their

@@ -50,6 +50,9 @@ There are no automated tests. Verify changes by running the app against `samples
 - `Tabbit/UI/`:
   - `DocumentWindowController`: window, native tabs, View/Edit toolbar, edited dot on tabs,
     Reveal in Finder.
+  - `FinderReveal`: Reveal in Finder via AppleScript, so the front Finder window moves to the
+    file's folder instead of a new window opening. Falls back to
+    `NSWorkspace.activateFileViewerSelecting` without Automation consent.
   - `TabContextMenu`: adds Reveal in Finder to the tab's right-click menu. AppKit has no API
     for that menu; its items target the clicked tab's window, so the item is appended when the
     menu starts tracking (`NSMenu.didBeginTrackingNotification`).
@@ -93,6 +96,11 @@ There are no automated tests. Verify changes by running the app against `samples
   or the requirement would also be applied to the debug dylib and break the signature.
 - **Privacy prompts:** test with copies of `samples/` outside `~/Documents`, `~/Desktop` and
   `~/Downloads` to avoid triggering "access files in your Documents folder" prompts.
+- **Automation consent:** controlling Finder needs the "Tabbit wants to control Finder" consent
+  (`NSAppleEventsUsageDescription`). `FinderReveal` asks for it with
+  `AEDeterminePermissionToAutomateTarget` on a background queue, because the prompt blocks
+  the calling thread. It is also keyed to the designated requirement, so it survives rebuilds.
+  To see the prompt again: `tccutil reset AppleEvents io.github.byronf-sama.tabbit`.
 - **Don't standardize URLs passed to WebKit.** `standardizedFileURL` turns `/private/tmp/…` into
   `/tmp/…`, and the file then falls outside the folder WebKit was granted. Standardize only for
   comparisons.
