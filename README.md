@@ -106,6 +106,7 @@ updated app. Permissions you've already granted carry over.
 | Open a file | ⌘O (also File > Open Recent) |
 | Switch between View and Edit | ⌘E, or the View/Edit control in the toolbar |
 | Save | ⌘S |
+| Refresh the current file from disk | ⌘R (also File > Refresh) |
 | Close tab | ⌘W |
 | Next / previous tab | ⌃⇥ / ⌃⇧⇥ |
 | Find in the editor | ⌘F |
@@ -116,6 +117,8 @@ updated app. Permissions you've already granted carry over.
   the file's folder, it switches to that tab. Otherwise it opens the folder in a new tab of the
   front Finder window, or in a new window if no Finder window is open.
 - Tabs with unsaved changes show a dot. Closing one, or quitting, asks whether to save.
+- Refresh reloads the current file in both View and Edit mode. If the tab has unsaved edits,
+  it asks before discarding them.
 - In View mode, web links open in your default browser. Links to local Markdown or HTML files open
   in a new tab (or switch to the tab if the file is already open). Other local files open in their
   default app.

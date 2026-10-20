@@ -51,13 +51,34 @@ final class TabbitDocument: NSDocument {
 
     // MARK: Reading and writing
 
+    /// Reload external changes without a prompt unless this tab has unsaved edits.
+    @IBAction func refreshFromDisk(_ sender: Any?) {
+        guard let fileURL, let fileType else { return }
+        if isDocumentEdited {
+            revertToSaved(sender)
+            return
+        }
+        do {
+            try revert(toContentsOf: fileURL, ofType: fileType)
+        } catch {
+            presentError(error)
+        }
+    }
+
+    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        if item.action == #selector(refreshFromDisk(_:)) {
+            return fileURL != nil && fileType != nil
+        }
+        return super.validateUserInterfaceItem(item)
+    }
+
     override func read(from data: Data, ofType typeName: String) throws {
         var data = data
         hasUTF8BOM = data.starts(with: [0xEF, 0xBB, 0xBF])
         if hasUTF8BOM { data = data.dropFirst(3) }
         (text, encoding) = Self.decode(data)
         savedText = text
-        // Non-empty only on File > Revert; a fresh document has no windows yet.
+        // Non-empty on Refresh or Revert; a fresh document has no windows yet.
         documentWindowControllers.forEach { $0.documentTextDidLoad() }
     }
 
