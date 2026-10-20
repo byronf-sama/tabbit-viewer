@@ -16,6 +16,7 @@ final class EditorController: NSObject, WKScriptMessageHandler, WKNavigationDele
     private var pendingText: String?
     /// Focus was requested before the editor had content.
     private var pendingFocus = false
+    private var pendingFind: NSTextFinder.Action?
 
     /// Called when the text starts or stops differing from the saved file.
     var dirtyDidChange: ((Bool) -> Void)?
@@ -48,6 +49,10 @@ final class EditorController: NSObject, WKScriptMessageHandler, WKNavigationDele
             guard let self else { return }
             webView.alphaValue = 1
             if pendingFocus { focus() }
+            if let action = pendingFind {
+                pendingFind = nil
+                find(action)
+            }
         }
     }
 
@@ -76,6 +81,22 @@ final class EditorController: NSObject, WKScriptMessageHandler, WKNavigationDele
         if !pendingFocus {
             webView.evaluateJavaScript("window.tabbit.focus()")
         }
+    }
+
+    func find(_ action: NSTextFinder.Action) {
+        guard isReady, pendingText == nil else {
+            pendingFind = action
+            return
+        }
+        let command: String
+        switch action {
+        case .showFindInterface: command = "open"
+        case .nextMatch: command = "next"
+        case .previousMatch: command = "previous"
+        default: return
+        }
+        webView.callAsyncJavaScript("window.tabbit.find(command)", arguments: ["command": command],
+                                    in: nil, in: .page, completionHandler: nil)
     }
 
     // MARK: WKScriptMessageHandler

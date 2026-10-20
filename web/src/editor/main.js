@@ -7,6 +7,7 @@ import { basicSetup } from "codemirror";
 import { Compartment, EditorState, Text } from "@codemirror/state";
 import { EditorView, keymap } from "@codemirror/view";
 import { indentWithTab } from "@codemirror/commands";
+import { openSearchPanel, findNext, findPrevious } from "@codemirror/search";
 import { defaultHighlightStyle, HighlightStyle, LanguageDescription, syntaxHighlighting } from "@codemirror/language";
 import { tags } from "@lezer/highlight";
 import { linter, lintGutter } from "@codemirror/lint";
@@ -120,6 +121,13 @@ window.tabbit = {
 
   focus() {
     view?.focus();
+  },
+
+  find(command) {
+    if (!view) return;
+    if (command === "open") openSearchPanel(view);
+    else if (command === "next") findNext(view);
+    else if (command === "previous") findPrevious(view);
   },
 };
 

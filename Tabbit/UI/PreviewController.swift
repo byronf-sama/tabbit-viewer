@@ -66,6 +66,16 @@ final class PreviewController: NSObject, WKNavigationDelegate {
         }
     }
 
+    func find(_ query: String, backwards: Bool = false, completion: @escaping (Bool) -> Void) {
+        let configuration = WKFindConfiguration()
+        configuration.backwards = backwards
+        configuration.caseSensitive = false
+        configuration.wraps = true
+        webView.find(query, configuration: configuration) { result in
+            completion(result.matchFound)
+        }
+    }
+
     // MARK: Markdown
 
     private func showMarkdown(_ fileURL: URL) {

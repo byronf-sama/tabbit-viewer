@@ -57,6 +57,19 @@ enum MainMenu {
         menu.addItem(withTitle: "Paste", action: #selector(NSText.paste(_:)), keyEquivalent: "v")
         menu.addItem(withTitle: "Delete", action: #selector(NSText.delete(_:)), keyEquivalent: "")
         menu.addItem(withTitle: "Select All", action: #selector(NSText.selectAll(_:)), keyEquivalent: "a")
+        menu.addItem(.separator())
+        let find = NSMenu(title: "Find")
+        for (title, key, action) in [
+            ("Find…", "f", NSTextFinder.Action.showFindInterface),
+            ("Find Next", "g", .nextMatch),
+            ("Find Previous", "G", .previousMatch),
+        ] {
+            let item = find.addItem(withTitle: title,
+                                    action: #selector(DocumentWindowController.findInDocument(_:)),
+                                    keyEquivalent: key)
+            item.tag = action.rawValue
+        }
+        menu.addItem(withTitle: "Find", action: nil, keyEquivalent: "").submenu = find
         return menu
     }
 

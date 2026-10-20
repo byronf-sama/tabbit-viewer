@@ -83,6 +83,10 @@ There are no automated tests. Verify changes by running the app against `samples
   The granted folder is tracked in `htmlFolderAccess`.
 - **Links:** every main-frame navigation away from the document is cancelled and routed by
   `LinkRouter`: web links to the default browser, local .md/.html to a tab, other files to their app.
+- **Find:** Edit > Find (⌘F, ⌘G, ⇧⌘G) searches the active mode. View uses an AppKit search
+  bar above the preview and `WKWebView.find` to search rendered text, ignoring case and wrapping
+  around. Return/Shift-Return move between matches; Escape/Done close the bar. Edit routes the
+  menu actions to CodeMirror's search commands.
 - **Edit:** `editor.html` exposes `window.tabbit.setDocument/getText/markSaved/focus` and posts
   `{type: "ready"}` / `{type: "dirty", dirty}` to the `tabbit` message handler. Swift owns the
   text: `TabbitDocument.save(to:…)` pulls the text from the editor before every save.

@@ -120,7 +120,16 @@ final class DocumentWindowController: NSWindowController, NSToolbarDelegate, NSM
         content.setMode(content.mode == .edit ? .view : .edit)
     }
 
+    @IBAction func findInDocument(_ sender: NSMenuItem) {
+        guard let action = NSTextFinder.Action(rawValue: sender.tag) else { return }
+        content.find(action)
+    }
+
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        if menuItem.action == #selector(findInDocument(_:)) {
+            guard let action = NSTextFinder.Action(rawValue: menuItem.tag) else { return false }
+            return content.canFind(action)
+        }
         if menuItem.action == #selector(toggleEditMode(_:)) {
             menuItem.state = content.mode == .edit ? .on : .off
         }
