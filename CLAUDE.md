@@ -77,9 +77,10 @@ There are no automated tests. Verify changes by running the app against `samples
   document's own path (`tabbit-file:///path/to/file.md`). Relative URLs resolve against the file's
   folder and `#anchors` stay same-document. The handler serves files only from that folder.
   Swift calls `window.tabbit.render(text)`; the page stays loaded so the scroll position survives.
-- **HTML View:** `loadFileURL(file, allowingReadAccessTo: folder)`. Unsaved edits use
-  `loadSimulatedRequest` with the file URL, which only works after a `loadFileURL` has given
-  the content process read access to the folder (tracked in `htmlFolderAccess`).
+- **HTML View:** `loadFileURL(file, allowingReadAccessTo: folder)` gives the content process read
+  access to the folder. Then saved and edited HTML use `loadSimulatedRequest` with the file URL
+  and UTF-8 response data, so relative resources work and WebKit does not guess a legacy charset.
+  The granted folder is tracked in `htmlFolderAccess`.
 - **Links:** every main-frame navigation away from the document is cancelled and routed by
   `LinkRouter`: web links to the default browser, local .md/.html to a tab, other files to their app.
 - **Edit:** `editor.html` exposes `window.tabbit.setDocument/getText/markSaved/focus` and posts

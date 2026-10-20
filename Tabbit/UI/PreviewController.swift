@@ -7,8 +7,9 @@ import WebKit
 ///   over `tabbit-file:` (see LocalFileSchemeHandler), so relative images and links resolve
 ///   against the file's folder. The page stays loaded; new text goes to `window.tabbit.render`,
 ///   which keeps the scroll position.
-/// - HTML is loaded from disk with read access to the file's folder, as a browser would. Unsaved
-///   edits are loaded as if they were the file's contents (same URL, same folder access).
+/// - HTML is loaded once from disk to grant read access to the file's folder, then Swift's
+///   decoded text is served as UTF-8 at the same URL. This keeps relative resources working and
+///   avoids WebKit guessing a legacy encoding when an HTML file has no charset declaration.
 /// - Navigating away from the document never happens in place: see LinkRouter.
 final class PreviewController: NSObject, WKNavigationDelegate {
     let webView: WKWebView
@@ -24,10 +25,10 @@ final class PreviewController: NSObject, WKNavigationDelegate {
     private var shownText: String?
     private var markdownPageReady = false
     /// Whether this web view's content process has been granted read access to the HTML file's
-    /// folder (by a loadFileURL). Loading unsaved edits relies on it.
+    /// folder (by a loadFileURL). Rendering HTML text while loading relative resources relies on it.
     private var htmlFolderAccess: URL?
-    /// Edited HTML waiting for the folder-access load to finish.
-    private var pendingUnsavedHTML: String?
+    /// HTML waiting for the folder-access load to finish.
+    private var pendingHTML: String?
     /// Scroll position to restore after reloading an HTML page.
     private var pendingScroll: (x: Double, y: Double)?
 
@@ -61,7 +62,7 @@ final class PreviewController: NSObject, WKNavigationDelegate {
         textIsSaved = isSaved
         switch document.kind {
         case .markdown: showMarkdown(fileURL)
-        case .html: showHTML(fileURL, isSaved: isSaved)
+        case .html: showHTML(fileURL)
         }
     }
 
@@ -93,7 +94,7 @@ final class PreviewController: NSObject, WKNavigationDelegate {
 
     // MARK: HTML
 
-    private func showHTML(_ fileURL: URL, isSaved: Bool) {
+    private func showHTML(_ fileURL: URL) {
         // Hand WebKit the URLs as they are: standardizing would turn /private/tmp/… into /tmp/…,
         // and the file would no longer be inside the folder it was granted access to.
         let folder = fileURL.deletingLastPathComponent()
@@ -102,14 +103,15 @@ final class PreviewController: NSObject, WKNavigationDelegate {
         shownText = text
 
         let load = { [self] in
-            if isSaved || htmlFolderAccess != folder.standardizedFileURL {
-                // From disk; this also grants the content process read access to the folder.
-                // Unsaved edits wait for it to finish (see didFinish).
-                pendingUnsavedHTML = isSaved ? nil : text
+            if htmlFolderAccess != folder.standardizedFileURL {
+                // This grants the content process read access to relative resources. After it
+                // finishes, load the Swift-decoded text with an explicit UTF-8 response.
+                webView.alphaValue = 0
+                pendingHTML = text
                 htmlFolderAccess = nil
                 webView.loadFileURL(fileURL, allowingReadAccessTo: folder)
             } else {
-                webView.loadSimulatedRequest(URLRequest(url: fileURL), responseHTML: text)
+                loadHTML(text, at: fileURL)
             }
         }
         guard reloadingSamePage else { return load() }
@@ -119,6 +121,17 @@ final class PreviewController: NSObject, WKNavigationDelegate {
             }
             load()
         }
+    }
+
+    /// Loads the document text at its file URL with a declared UTF-8 response encoding.
+    /// `TabbitDocument` has already decoded the file into a Swift String, so UTF-8 is the
+    /// correct encoding for the bytes sent to WebKit, regardless of the source file's metadata.
+    private func loadHTML(_ html: String, at fileURL: URL) {
+        let data = Data(html.utf8)
+        let request = URLRequest(url: fileURL)
+        let response = URLResponse(url: fileURL, mimeType: "text/html",
+                                   expectedContentLength: data.count, textEncodingName: "utf-8")
+        webView.loadSimulatedRequest(request, response: response, responseData: data)
     }
 
     // MARK: WKNavigationDelegate
@@ -153,9 +166,9 @@ final class PreviewController: NSObject, WKNavigationDelegate {
             if let url = webView.url, url.isFileURL, htmlFolderAccess == nil {
                 htmlFolderAccess = url.deletingLastPathComponent().standardizedFileURL
             }
-            if let unsaved = pendingUnsavedHTML, let fileURL = shownFileURL {
-                pendingUnsavedHTML = nil
-                webView.loadSimulatedRequest(URLRequest(url: fileURL), responseHTML: unsaved)
+            if let html = pendingHTML, let fileURL = shownFileURL {
+                pendingHTML = nil
+                loadHTML(html, at: fileURL)
                 return
             }
             if let scroll = pendingScroll {
@@ -175,10 +188,10 @@ final class PreviewController: NSObject, WKNavigationDelegate {
     }
 
     private func loadFailed() {
-        // If the folder-access load failed, still show the edits (relative resources may not load).
-        if let unsaved = pendingUnsavedHTML, let fileURL = shownFileURL {
-            pendingUnsavedHTML = nil
-            webView.loadSimulatedRequest(URLRequest(url: fileURL), responseHTML: unsaved)
+        // If the folder-access load failed, still show the text (relative resources may not load).
+        if let html = pendingHTML, let fileURL = shownFileURL {
+            pendingHTML = nil
+            loadHTML(html, at: fileURL)
         }
         webView.alphaValue = 1
     }
